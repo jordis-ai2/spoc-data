@@ -57,7 +57,7 @@ def load_dataset(task_types: Sequence[str] = TASK_TYPES) -> prior.DatasetDict:
     """Load the houses dataset."""
     data = {}
 
-    for split in ["val", "test"]:
+    for split in ["val"]:
         split_task_list = []
         for task in task_types:
             tasks = process_and_load_data(split, task)
