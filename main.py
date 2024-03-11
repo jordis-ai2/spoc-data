@@ -29,9 +29,9 @@ def process_and_load_data(split, task_type):
         "https://prior-datasets.s3.us-east-2.amazonaws.com/vida-benchmark-oct22-closed-oct31trashandplantfixes/"
     )
     # set the open type files as test, everything is _val
-    if split == "test":
-        filename = f"opentype_minival_Oct22_{task_type.lower()}_val.jsonl.gz"
-    elif split == "val":
+    # if split == "test":
+    #     filename = f"opentype_minival_Oct22_{task_type.lower()}_val.jsonl.gz"
+    if split == "val":
         filename = f"closedtype_minival_Oct22_fixedlemma_filterasset_{task_type.lower()}_val.jsonl.gz"
     else:
         raise ValueError(f"Unknown split {split}")
