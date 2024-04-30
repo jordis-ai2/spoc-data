@@ -16,11 +16,11 @@ def load_dataset() -> prior.DatasetDict:
         "https://prior-datasets.s3.us-east-2.amazonaws.com/vida-RL-training-data/"
     )
     data = {}
-    for split, size in zip(("train", "val"), (99061, 2950)):
+    for split, size in zip(("train", "val"), (21877, 2550)):
         if split == "train":
-            filename = "ObjectNavType_train.jsonl.gz"
+            filename = "RoomNav_train.jsonl.gz"
         else:
-            filename = "ObjectNavType_val.jsonl.gz"
+            filename = "RoomNav_val.jsonl.gz"
         if not os.path.exists(filename):
             try:
                 response = urllib.request.urlopen(base_url)
@@ -29,10 +29,10 @@ def load_dataset() -> prior.DatasetDict:
                     "./" + filename,
                     )
             except urllib.error.URLError as e:
-                print(f"Error: ObjectNavType for {split} not found")
+                print(f"Error: RoomNav for {split} not found")
                 return []
 
         with gzip.open(filename, "rt") as f:
             tasks = [line for line in tqdm(f, desc=f"Loading {split}")]
-        data[split] = LazyJsonDataset(data=tasks, dataset="ObjectNavType", split=split)
+        data[split] = LazyJsonDataset(data=tasks, dataset="RoomNav", split=split)
     return prior.DatasetDict(**data)
