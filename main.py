@@ -16,9 +16,9 @@ def load_dataset() -> prior.DatasetDict:
         "https://prior-datasets.s3.us-east-2.amazonaws.com/vida-RL-training-data/"
     )
     data = {}
-    for split, size in zip(("train", "val"), (21877, 2550)):
+    for split, size in zip(("train", "val"), (20144, 2550)):
         if split == "train":
-            filename = "RoomNav_train.jsonl.gz"
+            filename = "RoomNav_train_filtered.jsonl.gz"
         else:
             filename = "RoomNav_val.jsonl.gz"
         if not os.path.exists(filename):
